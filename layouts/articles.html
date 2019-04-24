@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="keywords" content="" />
+  <meta name="description" content="<%= @config[:site_description] %>" />
+  <meta name="robots" content="index,follow" />
+
+  <meta property="twitter:card" content="summary" />
+  <meta property="twitter:site" content="@lakkatv" />
+  <meta property="twitter:creator" content="@lakkatv" />
+  <meta property="twitter:url" content="<%= item_full_url %>" />
+  <meta property="twitter:title" content="<%= @item[:title] %>" />
+  <meta property="twitter:description" content="<%= excerptize strip_html(yield), :length => 150 %>" />
+  <% if item_has_thumbnail? %><meta property="twitter:image" content="<%= item_thumbnail %>"><% end %>
+
+  <meta property="og:url" content="<%= item_full_url %>" />
+  <meta property="og:title" content="<%= @item[:title] %>" />
+  <meta property="og:description" content="<%= excerptize strip_html(yield), :length => 150 %>" />
+  <% if item_has_thumbnail? %><meta property="og:image" content="<%= item_thumbnail %>"><% end %>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="/css/blog.css" />
+
+  <link href="/css/font-awesome.css" rel="stylesheet">
+  
+  <link rel="icon" type="image/png" href="/images/fav64.png" />
+  <link rel="apple-touch-icon" href="/images/fav64.png" />
+
+  <link href="/articles/feed.xml" type="application/atom+xml" rel="alternate" title="Lakka News Feed" />
+  
+  <title>新闻 - <%= @item[:title] %></title>
+  
+</head>
+ 
+<body class="blog">
+  <%= render 'partials/menu' %>
+
+  <div class="container">
+    <h1><%= @item[:title] %></h1>
+    <p class="article-infos"><i class="fa fa-clock-o"></i> Posted on <%= date_for @item[:created_at] %> by <%= @item[:author_name] %></p>
+    <ul class="clearer tags">
+      <% @item[:tags].each do |tag| %>
+        <li class="tag"><%= link_for_tag(tag, '/tags/' )%></li>
+      <% end %>
+    </ul>
+    <%= yield %>
+  </div>
+
+  <%= render 'partials/footer' %>
+</body>
+</html>

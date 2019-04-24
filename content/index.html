@@ -1,0 +1,96 @@
+<header class="mainheader">
+ <div class="container">
+  <div class="row">
+    <div class="col col-sm-5">
+     <h1>开源游戏机系统</h1>
+     <h2 class="subtitle"><%= @config[:site_subtitle] %></h2>
+     <%= link_to '获取ROM包', '/disclaimer', :class => "getlakka btn btn-lg" %>
+     <%= link_to 'GitHub', 'https://github.com/lualiliu/handos', :class => "getlakka btn btn-lg" %>
+    </div>
+    <div class="col col-sm-7">
+      <div class="tv">
+        <img src="/images/xmb.png">
+      </div>
+    </div>
+  </div>
+ </div>
+</header>
+
+<div id="features" class="container">
+  <div class="row">
+    <article class="col-sm-6">
+      <div class="row">
+        <div class="col col-xs-2"><i class="fa fa-bolt"></i></div>
+        <div class="col col-xs-10">
+          <h3>强大</h3>
+          <p>基于著名复古游戏开源项目RetroArch与著名基于安卓的开源系统LineageOS，使掌OS可以在各类安卓设备上实现游戏，手柄自动适配，网络对战，图形优化等功能，让手机和平板电脑配合手柄秒变掌机！</p>
+          <a class="pull-right" href="/powerful"><i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i> Learn more</a>
+        </div>
+      </div>
+    </article>
+    <article class="col-sm-6">
+      <div class="row">
+        <div class="col col-xs-2"><i class="fa fa-thumbs-o-up"></i></div>
+        <div class="col col-xs-10">
+          <h3>安全</h3>
+          <p>来自LineageOS团队对于安全的专注，让掌OS拥有一个安全的温床。让你的数据，个人信息，都掌控在自己手中。</p>
+          <!-- <a class="pull-right" href="/secure"><i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i> Learn more</a> -->
+        </div>
+      </div>
+    </article>
+  </div>
+  <div class="row">
+    <article class="col-sm-6">
+      <div class="row">
+        <div class="col col-xs-2"><i class="fa fa-smile-o"></i></div>
+        <div class="col col-xs-10">
+          <h3>用户友好</h3>
+          <p>目前掌OS支持大量机型，只需刷ROM包即可享受友好的用户界面，拷入游戏并接上手柄，即可开始享受掌机和游戏的乐趣</p>
+          <!-- <a class="pull-right" href="/lakka-is-low-cost"><i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i> Learn more</a> -->
+        </div>
+      </div>
+    </article>
+    <article class="col-sm-6">
+      <div class="row">
+        <div class="col col-xs-2"><i class="fa fa-github-alt"></i></div>
+        <div class="col col-xs-10">
+          <h3>开源</h3>
+          <p>掌OS以GPLv3协议开源，面向所有开发者，设计师，玩家，欢迎加群：275997764加入我们！感受开源的力量。</p>
+          <a class="pull-right" href="https://github.com/lualiliu/handos"><i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i> Learn more</a>
+        </div>
+      </div>
+    </article>
+  </div>
+</div>
+
+<section id="rpi">
+  <div class="container">
+    <div class="row">
+      <div class="col col-sm-6">
+        <img src="/images/xmb.png" alt="xmb" style="width:100%;margin-top: 30px;">
+      </div>
+      <div class="col col-sm-6">
+        <h2>掌OS桌面(RetroArch Launcher)</h2>
+        <p>掌OS桌面(RetroArch Launcher)是掌OS默认的桌面启动器。</p>
+        <p>它是优秀的游戏机前端RetroArch的安卓启动器版本，它拥有RetroArch的所有特色，可以轻松的运行你想运行的游戏机游戏。</p>
+        <p>你可以通过该网站获取掌OS的刷机包，只要你已经刷入了LineageOS，掌OS就可以直接刷入安装。</p>
+        <p>假如你不是LineageOS，你也可以通过直接安装掌OS桌面(RetroArch Launcher)并把它设为默认桌面来实现掌OS的主要功能。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="libretro">
+  <div class="container">
+    <div class="row">
+      <div class="col col-sm-6">
+        <a href="http://libretro.com"><img id="libretrologo" src="/images/libretro_logo.png" alt="libretro"></a>
+        <p>掌OS是基于LineageOS和RetroArch的安卓分支系统。</p>
+        <p>每一个游戏系统都被设计为 <em>libretro核心</em>, 而前端 <em>RetroArch Launcher</em>负责输入和显示. 这种清晰的分离设计确保了模块化和集中配置。</p>
+      </div>
+      <div class="col col-sm-6">
+        <img id="libeco" src="/images/libeco.png" alt="libretro ecosystem">
+      </div>
+    </div>
+  </div>
+</section>

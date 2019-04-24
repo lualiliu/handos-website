@@ -1,0 +1,117 @@
+# A list of file extensions that nanoc will consider to be textual rather than
+# binary. If an item with an extension not in this list is found,  the file
+# will be considered as binary.
+text_extensions: [ 'coffee', 'css', 'erb', 'haml', 'handlebars', 'hb', 'htm', 'html', 'js', 'less', 'markdown', 'md', 'ms', 'mustache', 'php', 'rb', 'sass', 'scss', 'txt', 'xhtml', 'xml' ]
+
+# The path to the directory where all generated files will be written to. This
+# can be an absolute path starting with a slash, but it can also be path
+# relative to the site directory.
+output_dir: output
+
+# A list of index filenames, i.e. names of files that will be served by a web
+# server when a directory is requested. Usually, index files are named
+# “index.html”, but depending on the web server, this may be something else,
+# such as “default.htm”. This list is used by nanoc to generate pretty URLs.
+index_filenames: [ 'index.html' ]
+
+# Whether or not to generate a diff of the compiled content when compiling a
+# site. The diff will contain the differences between the compiled content
+# before and after the last site compilation.
+enable_output_diff: false
+
+# Sitemap requires url to be specified
+base_url: http://os.yayabo.cn
+
+site_name: "掌OS(HandOS)"
+site_slogan: "让手机，平板变成游戏机的开源游戏机系统"
+site_subtitle: "掌OS是基于RetroArch的以LineageOS为核心的安卓分支，支持手机和平板等终端，可以让其变成游戏设备。"
+site_description: "掌OS是基于RetroArch的以LineageOS为核心的安卓分支，支持手机和平板等终端，配合手柄秒变掌机。"
+
+prune:
+  # Whether to automatically remove files not managed by nanoc from the output
+  # directory. For safety reasons, this is turned off by default.
+  auto_prune: false
+
+  # Which files and directories you want to exclude from pruning. If you version
+  # your output directory, you should probably exclude VCS directories such as
+  # .git, .svn etc.
+  exclude: [ '.git', '.hg', '.svn', 'CVS' ]
+
+# The data sources where nanoc loads its data from. This is an array of
+# hashes; each array element represents a single data source. By default,
+# there is only a single data source that reads data from the “content/” and
+# “layout/” directories in the site directory.
+string_pattern_type: legacy
+data_sources:
+  -
+    # The type is the identifier of the data source. By default, this will be
+    # `filesystem_unified`.
+    type: filesystem_unified
+    identifier_type: legacy
+
+    # The path where items should be mounted (comparable to mount points in
+    # Unix-like systems). This is “/” by default, meaning that items will have
+    # “/” prefixed to their identifiers. If the items root were “/en/”
+    # instead, an item at content/about.html would have an identifier of
+    # “/en/about/” instead of just “/about/”.
+    items_root: /
+
+    # The path where layouts should be mounted. The layouts root behaves the
+    # same as the items root, but applies to layouts rather than items.
+    layouts_root: /
+
+    # Whether to allow periods in identifiers. When turned off, everything
+    # past the first period is considered to be the extension, and when
+    # turned on, only the characters past the last period are considered to
+    # be the extension. For example,  a file named “content/about.html.erb”
+    # will have the identifier “/about/” when turned off, but when turned on
+    # it will become “/about.html/” instead.
+    allow_periods_in_identifiers: true
+
+release:
+  i386: http://le.builds.lakka.tv/Generic.i386/Lakka-Generic.i386-2.2.2.img.gz
+  x86_64: http://le.builds.lakka.tv/Generic.x86_64/Lakka-Generic.x86_64-2.2.2.img.gz
+  allwinner.bananapi: http://le.builds.lakka.tv/Allwinner.Bananapi.arm/Lakka-Allwinner.Bananapi.arm-2.2.2.img.gz
+  allwinner.cubieboard2: http://le.builds.lakka.tv/Allwinner.Cubieboard2.arm/Lakka-Allwinner.Cubieboard2.arm-2.2.2.img.gz
+  allwinner.cubietruck: http://le.builds.lakka.tv/Allwinner.Cubietruck.arm/Lakka-Allwinner.Cubietruck.arm-2.2.2.img.gz
+  allwinner.nanopi_m1_plus: http://le.builds.lakka.tv/Allwinner.nanopi_m1_plus.arm/Lakka-Allwinner.nanopi_m1_plus.arm-2.2.2.img.gz
+  allwinner.orangepi_2: http://le.builds.lakka.tv/Allwinner.orangepi_2.arm/Lakka-Allwinner.orangepi_2.arm-2.2.2.img.gz
+  allwinner.orangepi_lite: http://le.builds.lakka.tv/Allwinner.orangepi_lite.arm/Lakka-Allwinner.orangepi_lite.arm-2.2.2.img.gz
+  allwinner.orangepi_one: http://le.builds.lakka.tv/Allwinner.orangepi_one.arm/Lakka-Allwinner.orangepi_one.arm-2.2.2.img.gz
+  allwinner.orangepi_pc: http://le.builds.lakka.tv/Allwinner.orangepi_pc.arm/Lakka-Allwinner.orangepi_pc.arm-2.2.2.img.gz
+  allwinner.orangepi_plus: http://le.builds.lakka.tv/Allwinner.orangepi_plus.arm/Lakka-Allwinner.orangepi_plus.arm-2.2.2.img.gz
+  allwinner.orangepi_plus2e: http://le.builds.lakka.tv/Allwinner.orangepi_plus2e.arm/Lakka-Allwinner.orangepi_plus2e.arm-2.2.2.img.gz
+  imx6.cuboxi: http://le.builds.lakka.tv/imx6.cuboxi.arm/Lakka-imx6.cuboxi.arm-2.2.2.img.gz
+  imx6.udoo: http://le.builds.lakka.tv/imx6.udoo.arm/Lakka-imx6.udoo.arm-2.2.2.img.gz
+  rpi: http://le.builds.lakka.tv/RPi.arm/Lakka-RPi.arm-2.2.2.img.gz
+  rpi2: http://le.builds.lakka.tv/RPi2.arm/Lakka-RPi2.arm-2.2.2.img.gz
+  bpi: http://le.builds.lakka.tv/Bananapi.arm/Lakka-Bananapi.arm-2.2.2.img.gz
+  c1: http://le.builds.lakka.tv/OdroidC1.arm/Lakka-OdroidC1.arm-2.2.2.img.gz
+  c2: http://le.builds.lakka.tv/Odroid_C2.arm/Lakka-Odroid_C2.arm-2.2.2.img.gz
+  xu3: http://le.builds.lakka.tv/OdroidXU3.arm/Lakka-OdroidXU3.arm-2.2.2.img.gz
+  wtk: http://le.builds.lakka.tv/WeTek_Play.arm/Lakka-WeTek_Play.arm-2.2.2.img.gz
+  wtk2: http://le.builds.lakka.tv/WeTek_Play_2.arm/Lakka-WeTek_Play_2.arm-2.2.2.img.gz
+  wtkcore: http://le.builds.lakka.tv/WeTek_Core.arm/Lakka-WeTek_Core.arm-2.2.2.img.gz
+  wtkhub: http://le.builds.lakka.tv/WeTek_Hub.arm/Lakka-WeTek_Hub.arm-2.2.2.img.gz
+  hd18q: http://le.builds.lakka.tv/S805.HD18Q.arm/Lakka-S805.HD18Q.arm-2.2.2.img.gz
+  m201c: http://le.builds.lakka.tv/S805.M201C.arm/Lakka-S805.M201C.arm-2.2.2.img.gz
+  m201d: http://le.builds.lakka.tv/S805.M201D.arm/Lakka-S805.M201D.arm-2.2.2.img.gz
+  mk808bp: http://le.builds.lakka.tv/S805.MK808B-Plus.arm/Lakka-S805.MK808B-Plus.arm-2.2.2.img.gz
+  mxq: http://le.builds.lakka.tv/S805.MXQ.arm/Lakka-S805.MXQ.arm-2.2.2.img.gz
+  S8X2.M8: http://le.builds.lakka.tv/S8X2.M8.arm/Lakka-S8X2.M8.arm-2.2.2.img.gz
+  S8X2.MXIII-1G: http://le.builds.lakka.tv/S8X2.MXIII-1G.arm/Lakka-S8X2.MXIII-1G.arm-2.2.2.img.gz
+  S8X2.MXIII-PLUS: http://le.builds.lakka.tv/S8X2.MXIII-PLUS.arm/Lakka-S8X2.MXIII-PLUS.arm-2.2.2.img.gz
+  S8X2.S82: http://le.builds.lakka.tv/S8X2.S82.arm/Lakka-S8X2.S82.arm-2.2.2.img.gz
+  S8X2.T8: http://le.builds.lakka.tv/S8X2.T8.arm/Lakka-S8X2.T8.arm-2.2.2.img.gz
+  S8X2.X8H-PLUS: http://le.builds.lakka.tv/S8X2.X8H-PLUS.arm/Lakka-S8X2.X8H-PLUS.arm-2.2.2.img.gz
+  s905: http://le.builds.lakka.tv/S905.arm/Lakka-S905.arm-2.2.2.img.gz
+  s912: http://le.builds.lakka.tv/S912.arm/Lakka-S912.arm-2.2.2.img.gz
+  tkb: http://le.builds.lakka.tv/Rockchip.TinkerBoard.arm/Lakka-Rockchip.TinkerBoard.arm-2.2.2.img.gz
+  miqi: http://le.builds.lakka.tv/Rockchip.MiQi.arm/Lakka-Rockchip.MiQi.arm-2.2.2.img.gz
+  rock64: http://le.builds.lakka.tv/Rockchip.ROCK64.arm/Lakka-Rockchip.ROCK64.arm-2.2.2.img.gz
+
+deploy:
+  default:
+    kind: rsync
+    options: [ '-avz', '--delete-after', '-e', 'ssh' ]
+    dst:  "lakka-website:/home/lakka/www"

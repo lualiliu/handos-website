@@ -1,0 +1,124 @@
+#!/usr/bin/env ruby
+
+# A few helpful tips about the Rules file:
+#
+# * The string given to #compile and #route are matching patterns for
+#   identifiers--not for paths. Therefore, you can’t match on extension.
+#
+# * The order of rules is important: for each item, only the first matching
+#   rule is applied.
+#
+# * Item identifiers start and end with a slash (e.g. “/about/” for the file
+#   “content/about.html”). To select all children, grandchildren, … of an
+#   item, use the pattern “/about/*/”; “/about/*” will also select the parent,
+#   because “*” matches zero or more characters.
+
+preprocess do
+  create_tags_pages
+end
+
+compile '/get*'do
+  filter :erb if item[:extension] == "html"
+  filter :kramdown if item[:extension] == "md"
+  layout 'wizzard'
+end
+
+compile '/sitemap' do
+  filter :erb
+end
+
+compile '/robots*' do
+  #nothing
+end
+
+['/about', '/articles', '/disclaimer', '/powerful', '/lakka-is-low-cost', '/opensource', '/secure', '/tutorial'].each do |it|
+  compile it do
+    unless item.binary?
+      filter :erb if item[:extension] == 'html'
+      filter :kramdown if item[:extension] == 'md'
+      layout 'page'
+    end
+  end
+end
+
+compile '/doc*' do
+  unless item.binary?
+    filter :erb if item[:extension] == 'html'
+    filter :kramdown if item[:extension] == 'md'
+    filter :doc_links
+    filter :doc_alerts
+    filter :doc_images
+    layout 'doc'
+  end
+end
+
+compile '/db*' do
+  filter :erb if item[:extension] == 'html'
+  filter :kramdown if item[:extension] == 'md'
+  layout 'db'
+end
+
+compile '/tags/*/' do
+  filter :erb if item[:extension] == 'html'
+  layout 'tag'
+end
+
+compile '/contact' do
+  filter :erb if item[:extension] == 'html'
+  layout 'contact'
+end
+
+compile '/articles/*/' do
+  unless item.binary?
+    filter :kramdown if item[:extension] == 'md'
+    filter :erb if ['html', 'xml'].include? item[:extension]
+    layout 'articles' unless item[:extension] == 'xml'
+  end
+end
+
+compile '/' do
+   filter :erb
+   layout 'home'
+end
+
+compile '*' do
+  if item[:extension] == 'css'
+    filter :rainpress, newlines: false
+  elsif item[:extension] == 'js' || item[:extension] == 'php'
+    # don’t filter js and php
+  elsif item.binary?
+    # don’t filter binary items
+  elsif item[:extension] == "md"
+    filter :kramdown
+    layout 'handos'
+  else
+    filter :erb
+    layout 'handos' 
+  end
+end
+
+route '/robots' do
+  "#{item.identifier.chop}.#{item[:extension]}"
+end
+
+route '*' do
+  if item[:extension] == 'css'
+    # Write item with identifier /foo/ to /foo.css
+    item.identifier.chop + '.css'
+  elsif item[:extension] == 'php'
+    item.identifier.chop + '.php'
+  elsif item[:extension] == 'js'
+    item.identifier.chop + '.js'
+  elsif item[:extension] == 'xml'
+    item.identifier.chop + '.xml'
+  elsif item.binary?
+    # Write item with identifier /foo/ to /foo.ext
+    suffix = (item[:extension].nil? )? '' : ('.' + item[:extension])
+    item.identifier.chop + suffix
+  else
+    # Write item with identifier /foo/ to /foo/index.html
+    item.identifier + 'index.html'
+  end
+end
+
+layout '*', :erb
